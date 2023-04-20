@@ -9,21 +9,27 @@ import { Book } from 'app/models/book';
 })
 export class DataService {
 
-  constructor(private loggerService : LoggerService) { }
+  mostPopularBook: Book = allBooks[0];
 
-  getAllReaders(): Reader[]{
+  constructor(private loggerService: LoggerService) { }
+
+  setMostPopularBook(popularBook: Book): void {
+    this.mostPopularBook = popularBook;
+  }
+
+  getAllReaders(): Reader[] {
     return allReaders;
   }
 
-  getReaderById(id:number): Reader{
+  getReaderById(id: number): Reader {
     return allReaders.find(reader => reader.readerID === id);
   }
 
-  getAllBooks(): Book[]{
+  getAllBooks(): Book[] {
     return allBooks;
   }
 
-  getBookById(id:number): Book{
+  getBookById(id: number): Book {
     return allBooks.find(book => book.bookID === id);
   }
 
