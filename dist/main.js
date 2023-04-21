@@ -195,10 +195,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppModule": () => (/* binding */ AppModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ 3679);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/forms */ 3679);
 /* harmony import */ var _add_book_add_book_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./add-book/add-book.component */ 9884);
 /* harmony import */ var _add_reader_add_reader_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./add-reader/add-reader.component */ 4808);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component */ 5041);
@@ -206,6 +206,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dashboard/dashboard.component */ 7528);
 /* harmony import */ var _edit_book_edit_book_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./edit-book/edit-book.component */ 445);
 /* harmony import */ var _edit_reader_edit_reader_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./edit-reader/edit-reader.component */ 6236);
+/* harmony import */ var _core_logger_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./core/logger.service */ 6383);
+/* harmony import */ var _core_data_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./core/data.service */ 3943);
+
+
 
 
 
@@ -219,8 +223,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let AppModule = class AppModule {
 };
-AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.NgModule)({
+AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.NgModule)({
         declarations: [
             _app_component__WEBPACK_IMPORTED_MODULE_2__.AppComponent,
             _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_4__.DashboardComponent,
@@ -230,11 +234,21 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
             _add_reader_add_reader_component__WEBPACK_IMPORTED_MODULE_1__.AddReaderComponent
         ],
         imports: [
-            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__.BrowserModule,
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_11__.BrowserModule,
             _app_routing_module__WEBPACK_IMPORTED_MODULE_3__.AppRoutingModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormsModule
+            _angular_forms__WEBPACK_IMPORTED_MODULE_12__.FormsModule
         ],
-        providers: [],
+        providers: [
+            _core_data_service__WEBPACK_IMPORTED_MODULE_8__.DataService,
+            _core_logger_service__WEBPACK_IMPORTED_MODULE_7__.LoggerService,
+            // {provide : LoggerService, useValue:{
+            //   log:(message : string) => console.log(`MESSAGE : ${message}`),
+            //   error:(message:string) => console.log(`PROBLEM : ${message}`)
+            // }},
+            // {provide:DataService, useFactory :dataServiceFactory, deps:[LoggerService]}
+            // PlainLoggerService,
+            // { provide : LoggerService , useExisting : PlainLoggerService }
+        ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__.AppComponent]
     })
 ], AppModule);
@@ -243,7 +257,7 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
 
 /***/ }),
 
-/***/ 943:
+/***/ 3943:
 /*!**************************************!*\
   !*** ./src/app/core/data.service.ts ***!
   \**************************************/
@@ -287,9 +301,7 @@ DataService.ctorParameters = () => [
     { type: _logger_service__WEBPACK_IMPORTED_MODULE_0__.LoggerService }
 ];
 DataService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
-        providedIn: 'root'
-    })
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)()
 ], DataService);
 
 
@@ -321,9 +333,7 @@ let LoggerService = class LoggerService {
     }
 };
 LoggerService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
-        providedIn: 'root'
-    })
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)()
 ], LoggerService);
 
 
@@ -345,7 +355,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _raw_loader_dashboard_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./dashboard.component.html */ 9306);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
 /* harmony import */ var app_core_logger_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! app/core/logger.service */ 6383);
-/* harmony import */ var app_core_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! app/core/data.service */ 943);
+/* harmony import */ var app_core_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! app/core/data.service */ 3943);
 
 
 
@@ -355,6 +365,7 @@ let DashboardComponent = class DashboardComponent {
     constructor(loggerService, dataService) {
         this.loggerService = loggerService;
         this.dataService = dataService;
+        this.loggerService.log('Creating the Dashboard !');
     }
     ngOnInit() {
         this.allBooks = this.dataService.getAllBooks();
@@ -427,7 +438,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _raw_loader_edit_book_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./edit-book.component.html */ 8367);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 9895);
-/* harmony import */ var app_core_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! app/core/data.service */ 943);
+/* harmony import */ var app_core_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! app/core/data.service */ 3943);
 /* harmony import */ var app_core_logger_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! app/core/logger.service */ 6383);
 
 
@@ -484,7 +495,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _raw_loader_edit_reader_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./edit-reader.component.html */ 4644);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 9895);
-/* harmony import */ var app_core_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! app/core/data.service */ 943);
+/* harmony import */ var app_core_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! app/core/data.service */ 3943);
 
 
 
