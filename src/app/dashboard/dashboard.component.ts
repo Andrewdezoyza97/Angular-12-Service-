@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Book } from "app/models/book";
 import { allBooks, allReaders } from 'app/data';
@@ -25,8 +26,14 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.allBooks = this.dataService.getAllBooks();
-    this.allReaders = this.dataService.getAllReaders();
+    this.dataService.getAllReaders().subscribe(
+      data => this.allReaders = data,
+      err => console.log(err),
+      () => this.loggerService.log('All done getting readers !')
+    );
     this.mostPopularBook = this.dataService.mostPopularBook;
+
+    this.loggerService.log('Done with dashboard intialization.');
   }
 
   deleteBook(bookID: number): void {
