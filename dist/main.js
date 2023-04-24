@@ -442,10 +442,15 @@ let DashboardComponent = class DashboardComponent {
         this.allBooks = this.dataService.getAllBooks();
         this.dataService.getAllReaders().subscribe((data) => this.allReaders = data, (err) => this.loggerService.log(err.friendlyMessage), () => this.loggerService.log('All done getting readers !'));
         this.mostPopularBook = this.dataService.mostPopularBook;
-        this.dataService.getAuthorRecommendation(1)
-            .then((author) => this.loggerService.log(author), (err) => this.loggerService.error(`The promise was rejected : ${err}`))
-            .catch((error) => this.loggerService.error(error.message));
+        this.getAuthorReccomdationAsync(1)
+            .catch(err => this.loggerService.error(err));
         this.loggerService.log('Done with dashboard intialization.');
+    }
+    getAuthorReccomdationAsync(readerID) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            let author = yield this.dataService.getAuthorRecommendation(readerID);
+            this.loggerService.log(author);
+        });
     }
     deleteBook(bookID) {
         console.warn(`Delete book not yet implemented (bookID: ${bookID}).`);
