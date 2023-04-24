@@ -11,6 +11,7 @@ import { EditBookComponent } from './edit-book/edit-book.component';
 import { EditReaderComponent } from './edit-reader/edit-reader.component';
 import { LoggerService } from './core/logger.service';
 import { DataService } from './core/data.service';
+import{  HttpClientModule} from '@angular/common/http';
 import { PlainLoggerService } from './core/plain-logger.service';
 import { dataServiceFactory } from './core/data.service.factory';
 
@@ -26,7 +27,8 @@ import { dataServiceFactory } from './core/data.service.factory';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
 
