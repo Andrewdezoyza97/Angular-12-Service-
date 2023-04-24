@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AddBookComponent } from './add-book/add-book.component';
@@ -14,6 +14,8 @@ import { DataService } from './core/data.service';
 import{  HttpClientModule} from '@angular/common/http';
 import { PlainLoggerService } from './core/plain-logger.service';
 import { dataServiceFactory } from './core/data.service.factory';
+import { BookTrackerError } from './models/bookTrackerError';
+import { BookTrackerErrorHandlerService } from './core/book-tracker-error-handler.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { dataServiceFactory } from './core/data.service.factory';
 
     DataService,
     LoggerService,
+    {provide : ErrorHandler, useClass : BookTrackerErrorHandlerService}
     // {provide : LoggerService, useValue:{
     //   log:(message : string) => console.log(`MESSAGE : ${message}`),
     //   error:(message:string) => console.log(`PROBLEM : ${message}`)
